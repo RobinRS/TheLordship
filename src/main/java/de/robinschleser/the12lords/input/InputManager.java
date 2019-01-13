@@ -33,7 +33,7 @@ public class InputManager {
 
     public void handleKeyboardInput(int key, int action) {
         for (KeyController keyController : keyControllers) {
-            if(keyController.isEnabled()) {
+            if(keyController.isKeyBoardEnabled()) {
                 if ( action == GLFW_PRESS ) {
                     keyController.keyPress(key);
                 } else if ( action == GLFW_RELEASE ) {
@@ -47,7 +47,7 @@ public class InputManager {
 
     public void handleMouseMove(double x, double y) {
         for (MouseController mouseController : mouseControllers) {
-            if(mouseController.isEnabled()) {
+            if(mouseController.isMouseEnabled()) {
                 mouseController.mouseMovment((int)x, (int)y);
             }
         }
@@ -55,7 +55,7 @@ public class InputManager {
 
     public void handleMouseScroll(double xoffset, double yoffset) {
         for (MouseController mouseController : mouseControllers) {
-            if(mouseController.isEnabled()) {
+            if(mouseController.isMouseEnabled()) {
                 mouseController.mouseScroll(xoffset, yoffset);
             }
         }
@@ -63,7 +63,7 @@ public class InputManager {
 
     public void handleMouseClick(int key, int action) {
         for (MouseController mouseController : mouseControllers) {
-            if(mouseController.isEnabled()) {
+            if(mouseController.isMouseEnabled()) {
                 if(key == GLFW_MOUSE_BUTTON_LEFT) {
                     if ( action == GLFW_PRESS ) {
                         mouseController.mouseLeftDown();

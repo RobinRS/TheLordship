@@ -2,6 +2,7 @@ package de.robinschleser.the12lords;
 
 import de.robinschleser.the12lords.entity.PlayerEntity;
 import de.robinschleser.the12lords.input.InputManager;
+import de.robinschleser.the12lords.utils.ScreenCapture;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
@@ -25,6 +26,7 @@ public class Starter {
     private static long window;
     private static GameLoop loop;
     private static InputManager inputManager;
+    public static int xcoord, ycoord, widthwindow, heightwindow;
 
     public static void run() {
         System.out.println("Hello LWJGL " + Version.getVersion() + "!");
@@ -38,8 +40,6 @@ public class Starter {
         init();
         loop = new GameLoop(window);
         loop.runGameLoop();
-
-        destroy();
     }
 
     private static void init() {
@@ -61,6 +61,13 @@ public class Starter {
             if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE ) {
                 glfwSetWindowShouldClose(window, true);
             }
+            if(key == 283 && action == GLFW_RELEASE) {
+                try {
+                    ScreenCapture.saveScreenshot(window);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
             inputManager.handleKeyboardInput(key, action);
             System.out.println(key + " : " + action);
         });
@@ -80,6 +87,22 @@ public class Starter {
         glfwSetScrollCallback(window, GLFWScrollCallback.create((window, xoffset, yoffset) -> {
             inputManager.handleMouseScroll(xoffset, yoffset);
         }));
+
+        glfwSetWindowPosCallback(window, new GLFWWindowPosCallback() {
+            @Override
+            public void invoke(long window, int x, int y) {
+                xcoord = x;
+                ycoord = y;
+            }
+        });
+
+        glfwSetWindowSizeCallback(window, new GLFWWindowSizeCallback() {
+            @Override
+            public void invoke(long window, int width, int height) {
+                widthwindow = width;
+                heightwindow = height;
+            }
+        });
 
         try ( MemoryStack stack = stackPush() ) {
             IntBuffer pWidth = stack.mallocInt(1);
@@ -102,14 +125,6 @@ public class Starter {
         glfwShowWindow(window);
     }
 
-    private static void destroy() {
-        glfwFreeCallbacks(window);
-        glfwDestroyWindow(window);
-
-        glfwTerminate();
-        glfwSetErrorCallback(null).free();
-
-    }
 
     public static void main(String[] args) {
         SharedLibraryLoader.load();

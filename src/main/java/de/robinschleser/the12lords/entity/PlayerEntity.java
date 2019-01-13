@@ -5,10 +5,11 @@ package de.robinschleser.the12lords.entity;
 
 import de.robinschleser.the12lords.input.KeyController;
 import de.robinschleser.the12lords.input.MouseController;
+import de.robinschleser.the12lords.renderer.Renderer;
 
 import java.util.UUID;
 
-public class PlayerEntity extends Entity implements KeyController, MouseController {
+public class PlayerEntity extends LivingEntity implements KeyController, MouseController {
 
     private UUID uuid;
     private String name;
@@ -45,7 +46,7 @@ public class PlayerEntity extends Entity implements KeyController, MouseControll
 
     @Override
     public void mouseLeftUp() {
-
+        Renderer.rectangle.setShouldBeRendert(false);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class PlayerEntity extends Entity implements KeyController, MouseControll
 
     @Override
     public void mouseRightUp() {
-
+        Renderer.rectangle.setShouldBeRendert(true);
     }
 
     @Override
