@@ -4,14 +4,16 @@ package de.robinschleser.the12lords.entity;
  */
 
 import de.robinschleser.the12lords.input.KeyController;
+import de.robinschleser.the12lords.input.MouseController;
 
 import java.util.UUID;
 
-public class PlayerEntity extends Entity implements KeyController {
+public class PlayerEntity extends Entity implements KeyController, MouseController {
 
     private UUID uuid;
     private String name;
-    private boolean canMove;
+    private boolean canMove = true;
+    private int x,y,z;
 
 
     public PlayerEntity(UUID uuid, String name) {
@@ -20,27 +22,89 @@ public class PlayerEntity extends Entity implements KeyController {
     }
 
 
+
+    public void setCanMove(boolean canMove) {
+        this.canMove = canMove;
+    }
+
+
     @Override
-    public boolean isEnabled() {
+    public boolean isMouseEnabled() {
         return canMove;
     }
 
     @Override
-    public void keyDown() {
+    public void mouseMovment(int x, int y) {
 
     }
 
     @Override
-    public void keyUp() {
+    public void mouseScroll(double xoffset, double yoffset) {
 
     }
 
     @Override
-    public void keyPress() {
+    public void mouseLeftUp() {
 
     }
 
-    public void setCanMove(boolean canMove) {
-        this.canMove = canMove;
+    @Override
+    public void mouseLeftDown() {
+
+    }
+
+    @Override
+    public void mouseLeftRepeat() {
+
+    }
+
+    @Override
+    public void mouseRightUp() {
+
+    }
+
+    @Override
+    public void mouseRightDown() {
+
+    }
+
+    @Override
+    public void mouseRightRepeat() {
+
+    }
+
+    @Override
+    public void mouseMiddleUp() {
+
+    }
+
+    @Override
+    public void mouseMiddleDown() {
+
+    }
+
+    @Override
+    public void mouseMiddleRepeat() {
+
+    }
+
+    @Override
+    public boolean isKeyBoardEnabled() {
+        return canMove;
+    }
+
+    @Override
+    public void keyPress(int key) {
+
+    }
+
+    @Override
+    public void keyRelease(int key) {
+
+    }
+
+    @Override
+    public void keyRepeat(int key) {
+
     }
 }

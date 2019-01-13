@@ -5,14 +5,21 @@ package de.robinschleser.the12lords.input;
  */
 public interface MouseController {
 
-    boolean isEnabled();
+    boolean isMouseEnabled();
 
     void mouseMovment(int x, int y);
+    void mouseScroll(double xoffset, double yoffset);
 
-    void mouseLeftPress();
+    void mouseLeftUp();
     void mouseLeftDown();
+    void mouseLeftRepeat();
 
-    void mouseRightPress();
+    void mouseRightUp();
     void mouseRightDown();
+    void mouseRightRepeat();
+
+    void mouseMiddleUp();
+    void mouseMiddleDown();
+    void mouseMiddleRepeat();
 
 }

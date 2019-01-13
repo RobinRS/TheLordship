@@ -5,9 +5,9 @@ package de.robinschleser.the12lords.input;
  */
 public interface KeyController {
 
-    boolean isEnabled();
-    void keyDown();
-    void keyUp();
-    void keyPress();
+    boolean isKeyBoardEnabled();
+    void keyPress(int key);
+    void keyRelease(int key);
+    void keyRepeat(int key);
 
 }

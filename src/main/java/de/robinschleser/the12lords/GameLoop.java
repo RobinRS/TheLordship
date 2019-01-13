@@ -17,7 +17,7 @@ public class GameLoop {
     private long window;
 
     public GameLoop(long window) {
-        this.manager = new InputManager();
+        this.manager = new InputManager(window);
         this.window = window;
     }
 
