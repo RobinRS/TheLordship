@@ -9,103 +9,28 @@ import de.robinschleser.the12lords.renderer.Renderer;
 
 import java.util.UUID;
 
-public class PlayerEntity extends LivingEntity implements KeyController, MouseController {
-
-    private UUID uuid;
-    private String name;
-    private boolean canMove = true;
-    private int x,y,z;
-
+public class PlayerEntity extends MovingEntity {
 
     public PlayerEntity(UUID uuid, String name) {
-        this.uuid = uuid;
-        this.name = name;
-    }
+        super(uuid, name);
+        setCanMove(true);
 
-
-
-    public void setCanMove(boolean canMove) {
-        this.canMove = canMove;
-    }
-
-
-    @Override
-    public boolean isMouseEnabled() {
-        return canMove;
-    }
-
-    @Override
-    public void mouseMovment(int x, int y) {
-
-    }
-
-    @Override
-    public void mouseScroll(double xoffset, double yoffset) {
-
-    }
-
-    @Override
-    public void mouseLeftUp() {
-        Renderer.rectangle.setShouldBeRendert(false);
-    }
-
-    @Override
-    public void mouseLeftDown() {
-
-    }
-
-    @Override
-    public void mouseLeftRepeat() {
-
-    }
-
-    @Override
-    public void mouseRightUp() {
-        Renderer.rectangle.setShouldBeRendert(true);
-    }
-
-    @Override
-    public void mouseRightDown() {
-
-    }
-
-    @Override
-    public void mouseRightRepeat() {
-
-    }
-
-    @Override
-    public void mouseMiddleUp() {
-
-    }
-
-    @Override
-    public void mouseMiddleDown() {
-
-    }
-
-    @Override
-    public void mouseMiddleRepeat() {
-
-    }
-
-    @Override
-    public boolean isKeyBoardEnabled() {
-        return canMove;
     }
 
     @Override
     public void keyPress(int key) {
-
+        super.keyPress(key);
     }
 
     @Override
-    public void keyRelease(int key) {
-
+    public void mouseLeftUp() {
+        super.mouseLeftUp();
+        Renderer.rectangle.setShouldBeRendert(false);
     }
 
     @Override
-    public void keyRepeat(int key) {
-
+    public void mouseMiddleUp() {
+        super.mouseMiddleUp();
+        Renderer.rectangle.setShouldBeRendert(true);
     }
 }

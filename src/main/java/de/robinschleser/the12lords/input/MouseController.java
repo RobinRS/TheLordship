@@ -12,14 +12,11 @@ public interface MouseController {
 
     void mouseLeftUp();
     void mouseLeftDown();
-    void mouseLeftRepeat();
 
     void mouseRightUp();
     void mouseRightDown();
-    void mouseRightRepeat();
 
     void mouseMiddleUp();
     void mouseMiddleDown();
-    void mouseMiddleRepeat();
 
 }

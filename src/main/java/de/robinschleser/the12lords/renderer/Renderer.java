@@ -6,6 +6,7 @@ public class Renderer {
 
     public static Mesh rectangle;
     public GLSLShaderProgram shaderProgram;
+    public Scene currentScreen;
 
     public void render() {
         shaderProgram.enableShaderProgram();

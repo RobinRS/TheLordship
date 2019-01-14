@@ -1,4 +1,4 @@
-package de.robinschleser.the12lords;
+package de.robinschleser.the12lords.openglinit;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
