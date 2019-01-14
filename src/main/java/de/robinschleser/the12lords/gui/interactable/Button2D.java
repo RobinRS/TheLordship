@@ -10,17 +10,19 @@ public class Button2D extends Object2D implements MouseController {
 
     int mouseX, mouseY;
     Consumer<Position2D> onClick;
+    String text;
 
 
-    public Button2D(int x, int y, int width, int height, Consumer<Position2D> click) {
+    public Button2D(int x, int y, int width, int height, String text , Consumer<Position2D> click) {
         super(new Position2D(x, y), width, height);
         this.onClick = click;
+        this.text = text;
     }
 
 
     @Override
     public boolean isMouseEnabled() {
-        return false;
+        return true;
     }
 
     @Override
