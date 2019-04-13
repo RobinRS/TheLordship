@@ -14,7 +14,6 @@ public class PlayerEntity extends MovingEntity {
     public PlayerEntity(UUID uuid, String name) {
         super(uuid, name);
         setCanMove(true);
-
     }
 
     @Override
@@ -33,4 +32,5 @@ public class PlayerEntity extends MovingEntity {
         super.mouseMiddleUp();
         Renderer.rectangle.setShouldBeRendert(true);
     }
+
 }

@@ -22,6 +22,7 @@ public class MovingEntity extends LivingEntity implements MouseController, KeyCo
     public void keyPress(int key) {
         if(key == GLFW_KEY_W) {
             getLocation().setX(getLocation().getX() + 2);
+            System.out.println("W press");
         }
         if(key == GLFW_KEY_S) {
             getLocation().setX(getLocation().getX() - 2);
@@ -108,22 +109,12 @@ public class MovingEntity extends LivingEntity implements MouseController, KeyCo
     }
 
     @Override
-    public void mouseLeftRepeat() {
-
-    }
-
-    @Override
     public void mouseRightUp() {
 
     }
 
     @Override
     public void mouseRightDown() {
-
-    }
-
-    @Override
-    public void mouseRightRepeat() {
 
     }
 
@@ -137,8 +128,4 @@ public class MovingEntity extends LivingEntity implements MouseController, KeyCo
 
     }
 
-    @Override
-    public void mouseMiddleRepeat() {
-
-    }
 }

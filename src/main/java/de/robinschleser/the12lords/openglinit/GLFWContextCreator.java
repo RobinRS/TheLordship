@@ -2,9 +2,12 @@ package de.robinschleser.the12lords.openglinit;
 
 import de.robinschleser.the12lords.Starter;
 import de.robinschleser.the12lords.utils.ScreenCapture;
+import de.robinschleser.the12lords.utils.Utils;
 import org.lwjgl.glfw.*;
 import org.lwjgl.system.MemoryStack;
 
+import java.io.File;
+import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
 import static org.lwjgl.glfw.GLFW.*;
@@ -63,7 +66,6 @@ public class GLFWContextCreator {
                 }
             }
             Starter.inputManager.handleKeyboardInput(key, action);
-            System.out.println(key + " : " + action);
         });
 
         glfwSetMouseButtonCallback(Starter.window, GLFWMouseButtonCallback.create((window, button, action, mods) -> {
@@ -97,6 +99,14 @@ public class GLFWContextCreator {
                 Starter.heightwindow = height;
             }
         });
+
+        File gameFolder = new File(System.getenv("APPDATA") + "//The12Lordships//icon.png");
+        ByteBuffer icon = Utils.extractByteBufferFromImagePath(gameFolder.getAbsolutePath());
+        GLFWImage.Buffer gb = GLFWImage.create(1);
+        GLFWImage iconGI = GLFWImage.create().set(32, 32, icon);
+        gb.put(0, iconGI);
+
+        glfwSetWindowIcon(Starter.window, gb);
 
     }
 

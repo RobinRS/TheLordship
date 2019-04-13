@@ -69,8 +69,6 @@ public class InputManager {
                         mouseController.mouseLeftDown();
                     } else if ( action == GLFW_RELEASE ) {
                         mouseController.mouseLeftUp();
-                    } else if ( action == GLFW_REPEAT ) {
-                        mouseController.mouseLeftRepeat();
                     }
                 }
                 if(key == GLFW_MOUSE_BUTTON_MIDDLE) {
@@ -78,8 +76,6 @@ public class InputManager {
                         mouseController.mouseMiddleDown();
                     } else if ( action == GLFW_RELEASE ) {
                         mouseController.mouseMiddleUp();
-                    } else if ( action == GLFW_REPEAT ) {
-                        mouseController.mouseMiddleRepeat();
                     }
                 }
                 if(key == GLFW_MOUSE_BUTTON_RIGHT) {
@@ -87,8 +83,6 @@ public class InputManager {
                         mouseController.mouseRightDown();
                     } else if ( action == GLFW_RELEASE ) {
                         mouseController.mouseRightUp();
-                    } else if ( action == GLFW_REPEAT ) {
-                        mouseController.mouseRightRepeat();
                     }
                 }
             }

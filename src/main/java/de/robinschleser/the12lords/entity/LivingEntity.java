@@ -10,4 +10,6 @@ public class LivingEntity extends Entity {
     public LivingEntity(UUID uuid, String name) {
         super(uuid, name);
     }
+
+    
 }
