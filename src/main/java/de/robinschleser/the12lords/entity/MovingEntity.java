@@ -9,7 +9,7 @@ import static org.lwjgl.glfw.GLFW.*;
 
 public class MovingEntity extends LivingEntity implements MouseController, KeyController {
 
-    public MovingEntity(UUID uuid, String name) {
+    MovingEntity(UUID uuid, String name) {
         super(uuid, name);
     }
 
@@ -77,20 +77,7 @@ public class MovingEntity extends LivingEntity implements MouseController, KeyCo
 
     @Override
     public void mouseMovment(int x, int y) {
-        if(lastX > x) {
 
-        }
-        if(lastX < x) {
-
-        }
-        if(lastY > y) {
-
-        }
-        if(lastY < y) {
-
-        }
-        lastX = x;
-        lastY = y;
     }
 
     @Override

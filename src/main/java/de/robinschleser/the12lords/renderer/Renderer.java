@@ -5,7 +5,7 @@ import de.robinschleser.the12lords.minimal.Mesh;
 public class Renderer {
 
     public static Mesh rectangle;
-    public GLSLShaderProgram shaderProgram;
+    private GLSLShaderProgram shaderProgram;
     public Scene currentScreen;
 
     public void render() {

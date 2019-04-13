@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 public class Scene {
 
-    public GLSLShaderProgram currentShaderProgram;
-    public ArrayList<Mesh> toRender;
-    public double screenType;
+    private GLSLShaderProgram currentShaderProgram;
+    private ArrayList<Mesh> toRender;
+    private double screenType;
 
     public Scene(double screenType) {
         this.screenType = screenType;

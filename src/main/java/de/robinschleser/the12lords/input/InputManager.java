@@ -1,9 +1,5 @@
 package de.robinschleser.the12lords.input;
 
-import org.lwjgl.BufferUtils;
-import org.w3c.dom.events.MouseEvent;
-
-import java.nio.DoubleBuffer;
 import java.util.ArrayList;
 
 import static org.lwjgl.glfw.GLFW.*;

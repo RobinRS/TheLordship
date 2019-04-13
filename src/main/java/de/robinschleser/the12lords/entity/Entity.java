@@ -15,14 +15,14 @@ public class Entity {
     private Position3D location;
     private boolean canMove;
 
-    public Entity(UUID uuid, String name) {
+    Entity(UUID uuid, String name) {
         this.uuid = uuid;
         this.name = name;
         this.canMove = true;
         this.location = new Position3D();
     }
 
-    public Position3D getLocation() {
+    Position3D getLocation() {
         return location;
     }
 
@@ -42,11 +42,11 @@ public class Entity {
         return uuid;
     }
 
-    public void setCanMove(boolean canMove) {
+    void setCanMove(boolean canMove) {
         this.canMove = canMove;
     }
 
-    public boolean canMove() {
+    boolean canMove() {
         return canMove;
     }
 }

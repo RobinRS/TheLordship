@@ -6,12 +6,12 @@ import org.lwjgl.opengl.GL20;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class GLSLShaderProgram {
+class GLSLShaderProgram {
 
     private int programId;
 
 
-    public GLSLShaderProgram(String fragmentFile) {
+    GLSLShaderProgram(String fragmentFile) {
         programId = GL20.glCreateProgram();
         attacheShader(GL20.GL_FRAGMENT_SHADER, fragmentFile);
 
@@ -19,11 +19,11 @@ public class GLSLShaderProgram {
         GL20.glValidateProgram(programId);
     }
 
-    public void enableShaderProgram() {
+    void enableShaderProgram() {
         GL20.glUseProgram(programId);
     }
 
-    public void disableShaderProgram() {
+    private void disableShaderProgram() {
         GL20.glUseProgram(0);
     }
 
@@ -32,7 +32,7 @@ public class GLSLShaderProgram {
             BufferedReader reader = new BufferedReader(new InputStreamReader(GLSLShaderProgram.class.getResourceAsStream(file)));
             StringBuilder builder = new StringBuilder();
             while (reader.ready()) {
-                builder.append(reader.readLine() + System.lineSeparator());
+                builder.append(reader.readLine()).append(System.lineSeparator());
             }
             reader.close();
 
@@ -50,7 +50,7 @@ public class GLSLShaderProgram {
         }
     }
 
-    public void destroy() {
+    void destroy() {
         disableShaderProgram();
         GL20.glDeleteProgram(programId);
     }
