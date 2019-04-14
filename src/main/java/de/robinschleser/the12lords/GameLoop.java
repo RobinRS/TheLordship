@@ -11,11 +11,19 @@ import static org.lwjgl.opengl.GL11.*;
 
 /**
  * Created by Robin on 13.01.2019.
+ *
+ * Handles rendering of all scenes and there entity's
+ *
  */
 class GameLoop {
 
     private Renderer renderer;
     private long window;
+
+    /**
+     * Initializes Gameloop
+     * @param window where it should render every thing
+     */
 
     GameLoop(long window) {
         this.renderer = new Renderer();
@@ -23,6 +31,9 @@ class GameLoop {
     }
 
 
+    /**
+     * renders all entity's and clears the gl buffers
+     */
     void runGameLoop() {
         GL.createCapabilities();
         glClearColor(0.066f, 0.206f, 0.244f, 0.0f);

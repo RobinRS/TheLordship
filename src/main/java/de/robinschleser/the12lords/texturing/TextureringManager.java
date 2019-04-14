@@ -3,7 +3,6 @@ package de.robinschleser.the12lords.texturing;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class TextureringManager {
     public TextureringManager() {
         textures = new ArrayList<>();
         if(!texturesPath.isDirectory())
-            texturesPath.mkdir();
+            texturesPath.mkdirs();
         Path path = texturesPath.toPath();
         try {
             Files.setAttribute(path, "dos:hidden", true);
