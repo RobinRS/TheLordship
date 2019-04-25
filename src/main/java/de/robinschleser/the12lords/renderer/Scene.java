@@ -10,10 +10,8 @@ public class Scene {
 
     private GLSLShaderProgram currentShaderProgram;
     private ArrayList<Mesh> toRender;
-    private double screenType;
 
-    public Scene(double screenType) {
-        this.screenType = screenType;
+    public Scene() {
         this.currentShaderProgram = null;
         this.toRender = new ArrayList<>();
     }

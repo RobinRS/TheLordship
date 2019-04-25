@@ -2,13 +2,16 @@ package de.robinschleser.the12lords.gui.interactable;
 
 import de.robinschleser.the12lords.gui.Object2D;
 import de.robinschleser.the12lords.gui.Position2D;
-import de.robinschleser.the12lords.input.MouseController;
+import de.robinschleser.the12lords.input.Controller;
+import de.robinschleser.the12lords.input.Interaction;
 
 import java.util.function.Consumer;
 
-public class Button2D extends Object2D implements MouseController {
+import static de.robinschleser.the12lords.input.Interaction.InteractionType.MouseInteraction;
+import static de.robinschleser.the12lords.input.Interaction.MouseActionEnum.LEFT_DOWN;
 
-    int mouseX, mouseY;
+public class Button2D extends Object2D implements Controller {
+
     Consumer<Position2D> onClick;
     String text;
 
@@ -21,49 +24,11 @@ public class Button2D extends Object2D implements MouseController {
 
 
     @Override
-    public boolean isMouseEnabled() {
-        return true;
+    public void interaction(Interaction action) {
+        if(action.getInteractionType() == MouseInteraction) {
+            if(action.getMouseAction() == LEFT_DOWN) {
+                onClick.accept(new Position2D(action.getMouseX(), action.getMouseY()));
+            }
+        }
     }
-
-    @Override
-    public void mouseMovment(int x, int y) {
-        this.mouseX = x;
-        this.mouseY = y;
-    }
-
-    @Override
-    public void mouseScroll(double xoffset, double yoffset) {
-
-    }
-
-    @Override
-    public void mouseLeftUp() {
-        onClick.accept(new Position2D(mouseX, mouseY));
-    }
-
-    @Override
-    public void mouseLeftDown() {
-
-    }
-
-    @Override
-    public void mouseRightUp() {
-
-    }
-
-    @Override
-    public void mouseRightDown() {
-
-    }
-
-    @Override
-    public void mouseMiddleUp() {
-
-    }
-
-    @Override
-    public void mouseMiddleDown() {
-
-    }
-
 }

@@ -12,14 +12,14 @@ public class PacketDecoder extends ByteToMessageDecoder {
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf byteBuf, List<Object> out) throws Exception {
-        PacketSerializer serilizer = new PacketSerializer(byteBuf);
-        int id = serilizer.readVarInt();
+        PacketSerializer serializer = new PacketSerializer(byteBuf);
+        int id = serializer.readVarInt();
         Class<? extends Packet> packetClazz = NetworkClient.getPackets().get(id);
         if(packetClazz == null) {
             throw new NullPointerException("packet with id " + id + " not existing!");
         }
         Packet packet = packetClazz.newInstance();
-        packet.read(serilizer);
+        packet.read(serializer);
         out.add(packet);
     }
 

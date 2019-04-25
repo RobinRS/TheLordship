@@ -3,8 +3,8 @@ package de.robinschleser.the12lords;
 import de.robinschleser.the12lords.entity.PlayerEntity;
 import de.robinschleser.the12lords.input.InputManager;
 import de.robinschleser.the12lords.networking.NetworkClient;
-import de.robinschleser.the12lords.networking.packets.PingPacket;
 import de.robinschleser.the12lords.openglinit.GLFWContextCreator;
+import de.robinschleser.the12lords.openglinit.SharedLibraryLoader;
 import de.robinschleser.the12lords.texturing.TextureringManager;
 import org.lwjgl.Version;
 
@@ -17,7 +17,6 @@ public class Starter {
 
     // The window handle
     public static long window;
-    public static long pingSend;
     private static NetworkClient client;
     public static InputManager inputManager;
     private static TextureringManager textureringManager;
@@ -39,8 +38,7 @@ public class Starter {
         GameLoop loop = new GameLoop(window);
 
         PlayerEntity playerEntity = new PlayerEntity(UUID.randomUUID(), "Robin");
-        inputManager.registerKeyboardController(playerEntity);
-        inputManager.registerMouseController(playerEntity);
+        inputManager.registerController(playerEntity);
 
 
         loop.runGameLoop();
@@ -71,14 +69,8 @@ public class Starter {
      * starts the engine
      */
     public static void main(String[] args) {
-
-        client = new NetworkClient("localhost", 8810);
-        client.connect();
-        client.sendPacket(new PingPacket("Client"));
-        pingSend = System.currentTimeMillis();
-
-        /*SharedLibraryLoader.load();
-        run();*/
+        SharedLibraryLoader.load();
+        run();
     }
 
 }
