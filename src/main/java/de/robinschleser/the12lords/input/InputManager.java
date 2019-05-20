@@ -1,6 +1,7 @@
 package de.robinschleser.the12lords.input;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static de.robinschleser.the12lords.input.Interaction.InteractionType.KeyboardInteraction;
 import static de.robinschleser.the12lords.input.Interaction.InteractionType.MouseInteraction;
@@ -12,7 +13,7 @@ import static org.lwjgl.glfw.GLFW.*;
 public class InputManager {
 
     private long window;
-    private ArrayList<Controller> controllers;
+    private List<Controller> controllers;
 
     private Interaction currentInteraction;
 
@@ -22,7 +23,7 @@ public class InputManager {
         this.controllers = new ArrayList<>();
     }
 
-    public ArrayList<Controller> getController() {
+    public List<Controller> getControllers() {
         return controllers;
     }
 

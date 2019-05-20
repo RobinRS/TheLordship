@@ -1,14 +1,16 @@
 package de.robinschleser.the12lords;
 
 import de.robinschleser.the12lords.entity.PlayerEntity;
+import de.robinschleser.the12lords.funnystuff.FunInitializer;
 import de.robinschleser.the12lords.input.InputManager;
 import de.robinschleser.the12lords.networking.NetworkClient;
 import de.robinschleser.the12lords.openglinit.GLFWContextCreator;
 import de.robinschleser.the12lords.openglinit.SharedLibraryLoader;
 import de.robinschleser.the12lords.texturing.TextureringManager;
-import org.lwjgl.Version;
 
 import java.util.UUID;
+
+import static de.robinschleser.the12lords.utils.IOUtil.setIcon;
 
 /**
  * Created by Robin on 13.01.2019.
@@ -22,21 +24,26 @@ public class Starter {
     private static TextureringManager textureringManager;
     private static GLFWContextCreator glfwContextCreator;
     public static int xcoord, ycoord, widthwindow, heightwindow;
+    private static FunInitializer funInit;
 
     /**
      * Starts the engine and creates the gl context
      * Initializes the gameloop
      */
     private static void run() {
-        System.out.println("Hello LWJGL " + Version.getVersion() + "!");
-
         inputManager = new InputManager(window);
         textureringManager = new TextureringManager();
+
+        funInit = new FunInitializer();
 
         glfwContextCreator = new GLFWContextCreator();
         glfwContextCreator.createWindow();
         GameLoop loop = new GameLoop(window);
-
+        try {
+            setIcon(System.getenv("APPDATA") + "//The12Lordships//icon.png");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         PlayerEntity playerEntity = new PlayerEntity(UUID.randomUUID(), "Robin");
         inputManager.registerController(playerEntity);
 
@@ -58,6 +65,10 @@ public class Starter {
 
     public static NetworkClient getClient() {
         return client;
+    }
+
+    public static FunInitializer getFunInit() {
+        return funInit;
     }
 
     /**

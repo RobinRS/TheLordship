@@ -2,20 +2,18 @@ package de.robinschleser.the12lords.openglinit;
 
 import de.robinschleser.the12lords.Starter;
 import de.robinschleser.the12lords.utils.ScreenCapture;
-import de.robinschleser.the12lords.utils.Utils;
 import org.lwjgl.glfw.*;
 import org.lwjgl.system.MemoryStack;
 
-import java.io.File;
-import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.glfw.GLFW.glfwCreateWindow;
 import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class GLFWContextCreator {
+
+    private boolean ready = true;
 
     public void createWindow() {
         GLFWErrorCallback.createPrint(System.err).set();
@@ -31,7 +29,6 @@ public class GLFWContextCreator {
         Starter.window = glfwCreateWindow((int)(vidmode.width() / 1.6), (int)(vidmode.height() / 1.6), "The 12 Lordship", NULL, NULL);
         if ( Starter.window == NULL )
             throw new RuntimeException("Failed to create the GLFW window");
-        createCallbacks();
         try ( MemoryStack stack = stackPush() ) {
             IntBuffer pWidth = stack.mallocInt(1);
             IntBuffer pHeight = stack.mallocInt(1);
@@ -49,8 +46,8 @@ public class GLFWContextCreator {
 
         //V-Sync
         glfwSwapInterval(1);
-
         glfwShowWindow(Starter.window);
+        createCallbacks();
     }
 
     private void createCallbacks() {
@@ -97,17 +94,9 @@ public class GLFWContextCreator {
             public void invoke(long window, int width, int height) {
                 Starter.widthwindow = width;
                 Starter.heightwindow = height;
+
             }
         });
-
-        File gameFolder = new File(System.getenv("APPDATA") + "//The12Lordships//icon.png");
-        ByteBuffer icon = Utils.extractByteBufferFromImagePath(gameFolder.getAbsolutePath());
-        GLFWImage.Buffer gb = GLFWImage.create(1);
-        GLFWImage iconGI = GLFWImage.create().set(32, 32, icon);
-        gb.put(0, iconGI);
-
-        glfwSetWindowIcon(Starter.window, gb);
-
     }
 
 }

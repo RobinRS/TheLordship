@@ -45,6 +45,7 @@ class GameLoop {
 
             glfwSwapBuffers(window);
             glfwPollEvents();
+            Starter.getFunInit().getDiscord().callCallbacks();
         }
 
         renderer.destroy();

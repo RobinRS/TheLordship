@@ -1,12 +1,12 @@
 package de.robinschleser.the12lords.gui;
 
 import de.robinschleser.the12lords.minimal.Mesh;
-
-import java.awt.*;
+import de.robinschleser.the12lords.texturing.Texture;
 
 public class Object2D {
 
     private Mesh mesh;
+    private Texture texture;
     private int width, height;
     private Position2D pos2d;
 
