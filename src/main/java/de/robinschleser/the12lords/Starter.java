@@ -47,6 +47,7 @@ public class Starter {
         PlayerEntity playerEntity = new PlayerEntity(UUID.randomUUID(), "Robin");
         inputManager.registerController(playerEntity);
 
+        loop.getRenderer().addEntity(playerEntity);
 
         loop.runGameLoop();
     }

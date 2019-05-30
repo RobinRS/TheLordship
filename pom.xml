@@ -52,7 +52,7 @@
                 <directory>src/main/resources/shaders</directory>
                 <includes>
                     <include>*.fs</include>
-                    <include>*.</include>
+                    <include>*.*</include>
                 </includes>
             </resource>
         </resources>

@@ -21,9 +21,11 @@ public class DiscordIntegration {
         }).build();
         DiscordRPC.discordInitialize("580075326592516097", handlers, false);
         DiscordRPC.discordRegister("580075326592516097", "");
-        presence = new DiscordRichPresence.Builder("1v1 Queue");
-        presence.setDetails("Lobby 9090");
-        presence.setParty("Party 8810", 2, 5);
+        presence = new DiscordRichPresence.Builder("Help wanted! DM");
+        presence.setDetails("Developing OS base");
+        presence.setParty("8881010456", 1, 5);
+        presence.setBigImage("icon", "SouthstarOS is a operating system for Project Northstar by LeapMotion");
+        presence.setSmallImage("developer", "Developer of SouthstarOS");
         DiscordRPC.discordUpdatePresence(presence.build());
     }
 

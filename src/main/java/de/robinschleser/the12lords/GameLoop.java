@@ -27,6 +27,7 @@ class GameLoop {
 
     GameLoop(long window) {
         this.renderer = new Renderer();
+        renderer.init();
         this.window = window;
     }
 
@@ -37,7 +38,6 @@ class GameLoop {
     void runGameLoop() {
         GL.createCapabilities();
         glClearColor(0.066f, 0.206f, 0.244f, 0.0f);
-        renderer.init();
         while ( !glfwWindowShouldClose(window) ) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -57,5 +57,7 @@ class GameLoop {
         Objects.requireNonNull(glfwSetErrorCallback(null)).free();
     }
 
-
+    public Renderer getRenderer() {
+        return renderer;
+    }
 }

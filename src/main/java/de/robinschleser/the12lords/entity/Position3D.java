@@ -1,5 +1,7 @@
 package de.robinschleser.the12lords.entity;
 
+import org.joml.Vector3f;
+
 public class Position3D {
 
     private int x,y,z;
@@ -70,4 +72,7 @@ public class Position3D {
     }
 
 
+    public Vector3f getAsVec3() {
+        return new Vector3f(x / 100f, y / 100f, z / 100f);
+    }
 }

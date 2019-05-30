@@ -1,35 +1,39 @@
 package de.robinschleser.the12lords.renderer;
 
-import de.robinschleser.the12lords.minimal.Mesh;
+import de.robinschleser.the12lords.entity.Entity;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class Renderer {
 
-    public static Mesh rectangle;
-    private GLSLShaderProgram shaderProgram;
+    private List<Entity> entities;
     public Scene currentScreen;
 
     public void render() {
-        shaderProgram.enableShaderProgram();
-        rectangle.render();
+        for (Entity entity : entities) {
+            if(entity.getShader() != null && entity.getMesh() != null) {
+                entity.getShader().enableShaderProgram();
+                entity.getShader().addUniformVar("offset");
+                entity.getShader().shaderVec3("offset", entity.getLocation().getAsVec3());
+                entity.getMesh().render();
+            }
+        }
     }
 
     public void destroy() {
-        rectangle.destroy();
-        shaderProgram.destroy();
+        for (Entity entity : entities) {
+            entity.getMesh().destroy();
+            entity.getShader().destroy();
+        }
     }
 
     public void init() {
-        shaderProgram = new GLSLShaderProgram("/basic.fs");
-        rectangle = new Mesh(new int[] {
-                0, 1, 3,
-                3, 1, 2
-        }, new float[] {
-                -0.5f, 0.5f, 0,
-                -0.5f, -0.5f, 0,
-                0.5f, -0.5f, 0,
-                0.5f, 0.5f, 0
-        });
+        entities = new LinkedList<>();
+    }
 
+    public void addEntity(Entity entity) {
+       entities.add(entity);
     }
 
 
