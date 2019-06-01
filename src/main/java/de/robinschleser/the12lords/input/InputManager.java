@@ -1,10 +1,11 @@
 package de.robinschleser.the12lords.input;
 
+import de.robinschleser.the12lords.input.gamepad.Gamepad;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static de.robinschleser.the12lords.input.Interaction.InteractionType.KeyboardInteraction;
-import static de.robinschleser.the12lords.input.Interaction.InteractionType.MouseInteraction;
+import static de.robinschleser.the12lords.input.Interaction.InteractionType.*;
 import static org.lwjgl.glfw.GLFW.*;
 
 /**
@@ -12,19 +13,13 @@ import static org.lwjgl.glfw.GLFW.*;
  */
 public class InputManager {
 
-    private long window;
     private List<Controller> controllers;
 
     private Interaction currentInteraction;
 
-    public InputManager(long window) {
-        this.window = window;
+    public InputManager() {
         this.currentInteraction = new Interaction();
         this.controllers = new ArrayList<>();
-    }
-
-    public List<Controller> getControllers() {
-        return controllers;
     }
 
     public void handleKeyboardInput(int key, int action) {
@@ -104,4 +99,26 @@ public class InputManager {
         controllers.add(controller);
     }
 
+    public void handleNewGamepad(Gamepad pad) {
+        this.currentInteraction.addPad(pad);
+    }
+
+    public void setActivePads(int active) {
+        this.currentInteraction.setActiveGamepads(active);
+    }
+
+    public void handelPadInput(Gamepad pad) {
+        this.currentInteraction.setInteractionType(ControllerInteraction);
+        this.currentInteraction.setLastPad(pad);
+
+        for (Controller controller : controllers) {
+            if (controller.isEnabled) {
+                controller.interaction(this.currentInteraction);
+            }
+        }
+    }
+
+    public List<Gamepad> getPads() {
+        return this.currentInteraction.getPads();
+    }
 }

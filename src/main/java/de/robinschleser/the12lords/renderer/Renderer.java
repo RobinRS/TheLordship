@@ -13,6 +13,11 @@ public class Renderer {
     public void render() {
         for (Entity entity : entities) {
             if(entity.getShader() != null && entity.getMesh() != null) {
+                if(entity.firstRender){
+                    entity.initDebugEntity();
+                    entity.firstRender = false;
+                    entity.getMesh().setShouldBeRendert(true);
+                }
                 entity.getShader().enableShaderProgram();
                 entity.getShader().addUniformVar("offset");
                 entity.getShader().shaderVec3("offset", entity.getLocation().getAsVec3());

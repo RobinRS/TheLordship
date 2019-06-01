@@ -16,6 +16,7 @@ public class Entity {
     private Mesh mesh;
     private Position3D location;
     private boolean canMove;
+    public boolean firstRender = true;
 
     private GLSLShaderProgram shader;
 
@@ -24,7 +25,6 @@ public class Entity {
         this.name = name;
         this.canMove = true;
         this.location = new Position3D();
-
     }
 
     public void initDebugEntity() {

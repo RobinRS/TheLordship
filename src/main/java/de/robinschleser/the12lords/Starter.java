@@ -31,7 +31,7 @@ public class Starter {
      * Initializes the gameloop
      */
     private static void run() {
-        inputManager = new InputManager(window);
+        inputManager = new InputManager();
         textureringManager = new TextureringManager();
 
         funInit = new FunInitializer();
@@ -50,6 +50,7 @@ public class Starter {
         loop.getRenderer().addEntity(playerEntity);
 
         loop.runGameLoop();
+
     }
 
     public static GLFWContextCreator getGlfwContextCreator() {
@@ -68,7 +69,7 @@ public class Starter {
         return client;
     }
 
-    public static FunInitializer getFunInit() {
+    static FunInitializer getFunInit() {
         return funInit;
     }
 

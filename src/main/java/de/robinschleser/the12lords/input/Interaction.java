@@ -1,6 +1,9 @@
 package de.robinschleser.the12lords.input;
 
+import de.robinschleser.the12lords.input.gamepad.Gamepad;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import static de.robinschleser.the12lords.input.Interaction.InteractionType.NONE;
 import static de.robinschleser.the12lords.input.Interaction.KeyActionEnum.KEY_NONE;
@@ -24,18 +27,23 @@ public class Interaction {
     private int key;
     private KeyActionEnum keyAction = KEY_NONE;
 
+    private int activeGamepads = 0;
+    private List<Gamepad> pads;
+    private Gamepad lastPad;
+
     private InteractionType interactionType = NONE;
 
-    public Interaction() {
+    Interaction() {
         this.mouseX = 0;
         this.mouseY = 0;
         this.offsetX = 0;
         this.offsetY = 0;
         this.key = EMTY_VALUE;
-        this.keysDown = new ArrayList<>(); //Key Amount according to https://de.wikipedia.org/wiki/Tastatur
+        this.keysDown = new ArrayList<>();
+        this.pads = new ArrayList<>();
     }
 
-    protected void setMouseAction(MouseActionEnum action) {
+    void setMouseAction(MouseActionEnum action) {
         this.mouseAction = action;
     }
 
@@ -43,7 +51,7 @@ public class Interaction {
         return mouseAction;
     }
 
-    protected void setMouseX(double mouseX) {
+    void setMouseX(double mouseX) {
         this.mouseX = mouseX;
     }
 
@@ -51,7 +59,7 @@ public class Interaction {
         return mouseX;
     }
 
-    protected void setMouseY(double mouseY) {
+    void setMouseY(double mouseY) {
         this.mouseY = mouseY;
     }
 
@@ -59,7 +67,7 @@ public class Interaction {
         return mouseY;
     }
 
-    protected void setOffsetX(double offsetX) {
+    void setOffsetX(double offsetX) {
         this.offsetX = offsetX;
     }
 
@@ -67,7 +75,7 @@ public class Interaction {
         return offsetX;
     }
 
-    protected void setOffsetY(double offsetY) {
+    void setOffsetY(double offsetY) {
         this.offsetY = offsetY;
     }
 
@@ -75,21 +83,24 @@ public class Interaction {
         return offsetY;
     }
 
-    protected void setKeyPessed(int keyCode) {
+    void setKeyPessed(int keyCode) {
         if(!keysDown.contains(keyCode))
             keysDown.add(keyCode);
     }
 
-    protected void setKeyRelease(int keyCode) {
-        if(keysDown.contains(keyCode))
-            keysDown.remove(Integer.getInteger("" + keyCode));
+    void setKeyRelease(int keyCode) {
+        for (int i = 0; i < keysDown.size(); i++) {
+            if(keysDown.get(i) == keyCode){
+                keysDown.remove(i);
+            }
+        }
     }
 
-    protected void setKey(int key) {
+    void setKey(int key) {
         this.key = key;
     }
 
-    protected void setKeyAction(KeyActionEnum keyAction) {
+    void setKeyAction(KeyActionEnum keyAction) {
         this.keyAction = keyAction;
     }
 
@@ -109,7 +120,32 @@ public class Interaction {
         return interactionType;
     }
 
-    protected void setInteractionType(InteractionType interactionType) {
+    void setInteractionType(InteractionType interactionType) {
         this.interactionType = interactionType;
     }
+
+    void addPad(Gamepad pad) {
+        pads.add(pad);
+    }
+
+    List<Gamepad> getPads() {
+        return pads;
+    }
+
+    void setActiveGamepads(int activeGamepads) {
+        this.activeGamepads = activeGamepads;
+    }
+
+    public int getActiveGamepads() {
+        return activeGamepads;
+    }
+
+    void setLastPad(Gamepad lastPad) {
+        this.lastPad = lastPad;
+    }
+
+    public Gamepad getLastPad() {
+        return lastPad;
+    }
+
 }
